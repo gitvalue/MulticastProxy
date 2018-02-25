@@ -11,14 +11,14 @@ import Foundation
 public class MulticastProxy: NSObject {
     private var multicaster = Multicaster()
     
-    public class func create<T: AnyObject>(delegates: [T?]) -> T? {
-        return MulticastProxy(delegates: delegates) as? T
+    public class func create<T: AnyObject>(_ receivers: [T?]) -> T? {
+        return MulticastProxy(receivers: receivers) as? T
     }
     
-    private init(delegates: [AnyObject?]) {
+    private init(receivers: [AnyObject?]) {
         super.init()
         
-        delegates.forEach {
+        receivers.forEach {
             multicaster.addReceiver($0)
         }
     }
