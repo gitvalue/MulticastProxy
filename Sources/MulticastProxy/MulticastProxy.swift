@@ -29,15 +29,15 @@ public class MulticastProxy<T>: NSObject where T: AnyObject {
         multicaster.removeReceiver(receiver)
     }
     
-    override func conforms(to aProtocol: Protocol) -> Bool {
+    override public func conforms(to aProtocol: Protocol) -> Bool {
         return multicaster.receivers().first { $0.value?.conforms(to: aProtocol) ?? false } != nil
     }
     
-    override func responds(to aSelector: Selector!) -> Bool {
+    override public func responds(to aSelector: Selector!) -> Bool {
         return multicaster.responds(to: aSelector)
     }
     
-    override func forwardingTarget(for aSelector: Selector!) -> Any? {
+    override public func forwardingTarget(for aSelector: Selector!) -> Any? {
         return multicaster.responds(to: aSelector) ? multicaster : super.forwardingTarget(for: aSelector)
     }
 }
