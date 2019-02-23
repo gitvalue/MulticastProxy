@@ -4,9 +4,9 @@ import Foundation
  Multicasts the invocations to all members added
  to notification list.
  
- - author: dmitry.volosach@gismart.com
+ - author: dmitry.volosach@gmail.com
  */
-class MulticastProxy<T>: NSObject where T: AnyObject {
+public class MulticastProxy<T>: NSObject where T: AnyObject {
     private var multicaster = Multicaster()
     
     /**
@@ -15,7 +15,7 @@ class MulticastProxy<T>: NSObject where T: AnyObject {
      - parameters:
         - receiver: object to be added from notification list
      */
-    func add(receiver: T?) {
+    public func add(receiver: T?) {
         multicaster.addReceiver(receiver)
     }
     
@@ -25,7 +25,7 @@ class MulticastProxy<T>: NSObject where T: AnyObject {
      - parameters:
         - receiver: object to be removed from notification list
      */
-    func remove(receiver: T?) {
+    public func remove(receiver: T?) {
         multicaster.removeReceiver(receiver)
     }
     

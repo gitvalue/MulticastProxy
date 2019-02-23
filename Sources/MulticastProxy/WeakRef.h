@@ -3,7 +3,7 @@
 /**
  A weak object reference container
  
- - author: dmitry.volosach@gismart.com
+ - author: dmitry.volosach@gmail.com
  */
 @interface WeakRef : NSObject
 
