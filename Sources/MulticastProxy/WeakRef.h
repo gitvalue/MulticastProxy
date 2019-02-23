@@ -1,17 +1,23 @@
-//
-//  WeakRef.h
-//  MulticastProxy
-//
-//  Created by Dmitry on 2/24/18.
-//  Copyright © 2018 intervain. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
+/**
+ A weak object reference container
+ 
+ - author: dmitry.volosach@gismart.com
+ */
 @interface WeakRef : NSObject
 
+/**
+ Object reference
+ */
 @property (nonatomic, weak) id value;
 
+/**
+ The designated initializer.
+ 
+ - parameters:
+    - value: object reference to hold
+ */
 - (instancetype)initWithValue:(id)value;
 
 @end

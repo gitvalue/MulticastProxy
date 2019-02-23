@@ -1,19 +1,34 @@
-//
-//  Multicaster.h
-//  MulticastProxy
-//
-//  Created by Dmitry on 2/24/18.
-//  Copyright © 2018 intervain. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "WeakRef.h"
 
+/**
+ Forwards invocations to defined set of receivers
+ 
+ - author: dmitry.volosach@gismart.com
+ */
 @interface Multicaster : NSObject
 
+/**
+ Adds a ivocations receiver
+ 
+ - parameters:
+    - receiver: invocations handler
+ */
 - (void)addReceiver:(id)receiver;
+
+/**
+ Removes an invocations receiver, if necessary
+ 
+ - parameters:
+    - receiver: invocations handler
+ */
 - (void)removeReceiver:(id)receiver;
 
+/**
+ Returns list of receivers
+ 
+ - returns: set of invocations receivers
+ */
 - (NSArray<WeakRef *> *)receivers;
 
 @end

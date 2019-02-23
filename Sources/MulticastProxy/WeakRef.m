@@ -1,11 +1,3 @@
-//
-//  WeakRef.m
-//  MulticastProxy
-//
-//  Created by Dmitry on 2/24/18.
-//  Copyright © 2018 intervain. All rights reserved.
-//
-
 #import "WeakRef.h"
 
 @implementation WeakRef

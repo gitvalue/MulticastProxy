@@ -1,11 +1,3 @@
-//
-//  Multicaster.m
-//  MulticastProxy
-//
-//  Created by Dmitry on 2/24/18.
-//  Copyright © 2018 intervain. All rights reserved.
-//
-
 #import "Multicaster.h"
 
 @interface Multicaster () {
@@ -46,7 +38,7 @@
     BOOL result = NO;
     
     for (WeakRef *receiver in _receivers) {
-        if ([receiver.value respondsToSelector:aSelector]) {
+        if ([receiver.value respondsToSelector:aSelector] && [receiver.value methodSignatureForSelector:aSelector]) {
             result = YES;
             break;
         }

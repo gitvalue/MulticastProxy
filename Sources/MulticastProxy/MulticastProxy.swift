@@ -1,37 +1,43 @@
-//
-//  MulticastProxy.swift
-//  MulticastProxy
-//
-//  Created by Dmitry on 2/24/18.
-//  Copyright © 2018 intervain. All rights reserved.
-//
-
 import Foundation
 
-public class MulticastProxy: NSObject {
+/**
+ Multicasts the invocations to all members added
+ to notification list.
+ 
+ - author: dmitry.volosach@gismart.com
+ */
+class MulticastProxy<T>: NSObject where T: AnyObject {
     private var multicaster = Multicaster()
     
-    public class func create<T: AnyObject>(_ receivers: [T?]) -> T? {
-        return MulticastProxy(receivers: receivers) as? T
+    /**
+     Adds the invocations receiver to notification list
+     
+     - parameters:
+        - receiver: object to be added from notification list
+     */
+    func add(receiver: T?) {
+        multicaster.addReceiver(receiver)
     }
     
-    private init(receivers: [AnyObject?]) {
-        super.init()
-        
-        receivers.forEach {
-            multicaster.addReceiver($0)
-        }
+    /**
+     Removes the invocations receiver from notification list
+     
+     - parameters:
+        - receiver: object to be removed from notification list
+     */
+    func remove(receiver: T?) {
+        multicaster.removeReceiver(receiver)
     }
     
-    override public func conforms(to aProtocol: Protocol) -> Bool {
+    override func conforms(to aProtocol: Protocol) -> Bool {
         return multicaster.receivers().first { $0.value?.conforms(to: aProtocol) ?? false } != nil
     }
     
-    override public func responds(to aSelector: Selector!) -> Bool {
+    override func responds(to aSelector: Selector!) -> Bool {
         return multicaster.responds(to: aSelector)
     }
     
-    override public func forwardingTarget(for aSelector: Selector!) -> Any? {
+    override func forwardingTarget(for aSelector: Selector!) -> Any? {
         return multicaster.responds(to: aSelector) ? multicaster : super.forwardingTarget(for: aSelector)
     }
 }
